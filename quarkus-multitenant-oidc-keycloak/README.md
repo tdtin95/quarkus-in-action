@@ -1,57 +1,27 @@
-# oidc project
+# quarkus-multitenant-oidc-keycloak project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Quarkus multi-tenancy authenticated by oidc server as keycloak.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-```shell script
-./gradlew quarkusDev
+## Usage
+1. Set up keycloak server. You can find docker-compose file in ./document. Start it with command `
+docker-compose up -d`
+2. Create a user with Anonymous roles. 
+3. Get user token by calling, and copy access token 
+```
+curl --location --request POST 'http://127.0.0.1:8088/auth/realms/master/protocol/openid-connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=master' \
+--data-urlencode 'username=anonymous' \
+--data-urlencode 'password=your user password' \
+--data-urlencode 'grant_type=password'
+```
+4. Start quarkus application with command ./gradlew quarkusDev
+5. Call `localhost:8080/tenant` to check to result, authenticated with Bearer token is the token you copied above.
+ 
+```
+curl --location --request GET 'localhost:8080/tenant' \
+--header 'tenantId: master' \
+--header 'Authorization: Bearer your-keycloak-access-token
 ```
 
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./gradlew build
-```
-It produces the `oidc-0.0.1-SNAPSHOT-runner.jar` file in the `/build` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/lib` directory.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./gradlew build -Dquarkus.package.type=uber-jar
-```
-
-The application is now runnable using `java -jar build/oidc-0.0.1-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./build/oidc-0.0.1-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
-
-# RESTEasy JAX-RS
-
-<p>A Hello World RESTEasy resource</p>
-
-Guide: https://quarkus.io/guides/rest-json
-
-# RESTEasy JSON serialisation using Jackson
-
-<p>This example demonstrate RESTEasy JSON serialisation by letting you list, add and remove quark types from a list.</p>
-<p><b>Quarked!</b></p>
-
-Guide: https://quarkus.io/guides/rest-json
+Note: header tenantId is your realm name.
