@@ -4,8 +4,8 @@ Quarkus multi-tenancy authenticated by oidc server as keycloak.
 
 ## Usage
 1. Set up keycloak server. You can find docker-compose file in ./document. Start it with command `
-docker-compose up -d`
-2. Create realm by import file ./document/realm-initialize.json
+docker-compose up -d`. Go to localhost:8088 to access to keycloak server with username/pwd is : admin/admin
+2. Go to `http://localhost:8088/auth/admin/master/console/#/create/realm` and create realm by import file ./document/realm-initialize.json
 3. Get user access token by calling :
 ```
 curl --location --request POST 'http://127.0.0.1:8088/auth/realms/quarkus/protocol/openid-connect/token' \

@@ -8,7 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ext.Provider;
 
 @ApplicationScoped
-@Provider
 public class CustomTenantConfigResolver implements io.quarkus.oidc.TenantConfigResolver {
 
     @ConfigProperty(name = "security.oidc.auth-server-url")
