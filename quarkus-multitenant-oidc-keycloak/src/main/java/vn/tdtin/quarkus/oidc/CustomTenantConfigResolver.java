@@ -30,7 +30,7 @@ public class CustomTenantConfigResolver implements io.quarkus.oidc.TenantConfigR
             config.setAuthServerUrl(authServerUrl + SPLASH + tenantId);
             System.out.println(authServerUrl + SPLASH + tenantId);
             config.setClientId(clientId);
-            // config.setToken(OidcTenantConfig.Token.fromIssuer(tokenIssuer + SPLASH + tenantId));
+            config.setToken(OidcTenantConfig.Token.fromIssuer(tokenIssuer + SPLASH + tenantId));
             return config;
         }
         System.out.println("-----------NULL");
