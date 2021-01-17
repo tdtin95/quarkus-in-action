@@ -34,6 +34,10 @@ public interface UserRestClient {
     @GET
     void ping();
 
+    /**
+     * Call user service with status code 400 returned.
+     * @return Response
+     */
     @POST
     Response callWithException();
 }
