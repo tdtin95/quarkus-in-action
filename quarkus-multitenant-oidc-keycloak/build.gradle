@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.quarkus:quarkus-rest-client'
     implementation 'io.quarkus:quarkus-keycloak-authorization'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-hibernate-orm'
@@ -19,6 +20,16 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+<<<<<<< Updated upstream
+=======
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
+    // https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client
+    implementation 'org.keycloak:keycloak-admin-client:12.0.1'
+
+>>>>>>> Stashed changes
 }
 
 group 'vn.tdtin'
