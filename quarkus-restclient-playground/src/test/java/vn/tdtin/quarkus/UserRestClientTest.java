@@ -49,7 +49,7 @@ public class UserRestClientTest {
         for (int i = 0; i < 100; i++) {
             System.out.println("index: " + i);
             Response response = userRestClient.parseAsResponse();
-            response.close();
+            //response.close();
             System.out.println(response);
         }
 
